@@ -35,7 +35,6 @@ class Cart extends React.Component {
 
   getProductName = itemId => {
     const product = this.props.MenuDetails.filter(p => p.id === itemId);
-    debugger;
     return product[0].name;
   };
 
