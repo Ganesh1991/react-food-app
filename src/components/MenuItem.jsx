@@ -22,7 +22,13 @@ const MenuItem = props => (
         Price: {props.item.price}
         <br />
         {props.count > 0 && (
-          <React.Fragment>Total: {props.count}</React.Fragment>
+          <React.Fragment>
+            <React.Fragment>Total: {props.count}</React.Fragment>
+            <br />
+            <React.Fragment>
+              Cost (INR): {props.count * props.item.price}
+            </React.Fragment>
+          </React.Fragment>
         )}
       </Typography>
     </CardContent>
@@ -33,7 +39,6 @@ const MenuItem = props => (
         className={props.classes.button}
         onClick={() => props.addItem(props.item.id)}
       >
-        Add
         <Add className={props.classes.rightIcon} />
       </Button>
       <Button
@@ -43,7 +48,6 @@ const MenuItem = props => (
         className={props.classes.button}
         onClick={() => props.removeItem(props.item.id)}
       >
-        Remove
         <Remove className={props.classes.rightIcon} />
       </Button>
     </CardActions>

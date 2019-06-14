@@ -26,7 +26,14 @@ const Header = ({ classes }) => (
             if (orderedItem > 0) {
               return (
                 <React.Suspense fallback={null}>
-                  <Cart totalItem={orderedItem} classes={classes} />
+                  <Cart
+                    totalItem={orderedItem}
+                    classes={classes}
+                    orderDetails={context.state.orderDetails}
+                    MenuDetails={context.state.MenuItems}
+                    addItem={context.addItem}
+                    removeItem={context.removeItem}
+                  />
                 </React.Suspense>
               );
             } else return null;

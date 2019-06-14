@@ -52,12 +52,26 @@ const useStyles = makeStyles(theme => ({
   },
   iconSmall: {
     fontSize: 20
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3)
+    }
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5)
   }
 }));
 
 const Footer = React.lazy(() => import("./components/Footer"));
 const Layout = React.lazy(() => import("./layout/Public"));
 const Menu = React.lazy(() => import("./containers/Menu"));
+const CheckOut = React.lazy(() => import("./containers/CheckOut"));
 
 const App = props => {
   const comp = props.component;
@@ -76,6 +90,11 @@ const App = props => {
           <React.Suspense fallback={null}>
             <Menu classes={classes} />
             <Footer classes={classes} />
+          </React.Suspense>
+        )}
+        {comp === "CheckOut" && (
+          <React.Suspense fallback={null}>
+            <CheckOut classes={classes} />
           </React.Suspense>
         )}
       </MyProvider>
