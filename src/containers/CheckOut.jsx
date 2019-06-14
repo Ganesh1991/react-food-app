@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -91,7 +90,13 @@ class CheckOut extends React.Component {
           />
         );
       case 2:
-        return <Review {...this.props} addressDetails={this.state.addressDetails} paymentDetails={this.state.paymentDetails}/>;
+        return (
+          <Review
+            {...this.props}
+            addressDetails={this.state.addressDetails}
+            paymentDetails={this.state.paymentDetails}
+          />
+        );
       default:
         return null;
     }
@@ -148,7 +153,7 @@ class CheckOut extends React.Component {
 
     return (
       <Container className={classes.cardGrid} maxWidth="md">
-        <Grid container>
+        <Grid container className={classes.card}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
               Checkout

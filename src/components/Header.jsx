@@ -7,7 +7,7 @@ import { MyContext } from "../Provider/index";
 
 const Cart = React.lazy(() => import("./Cart"));
 
-const Header = ({ classes }) => (
+const Header = ({ classes, showCart }) => (
   <AppBar position="relative">
     <Toolbar>
       <RestaurantIcon className={classes.icon} />
@@ -19,27 +19,29 @@ const Header = ({ classes }) => (
       >
         Fred's Restaurant
       </Typography>
-      <React.Fragment>
-        <MyContext.Consumer>
-          {context => {
-            const orderedItem = context.state.orderDetails.length;
-            if (orderedItem > 0) {
-              return (
-                <React.Suspense fallback={null}>
-                  <Cart
-                    totalItem={orderedItem}
-                    classes={classes}
-                    orderDetails={context.state.orderDetails}
-                    MenuDetails={context.state.MenuItems}
-                    addItem={context.addItem}
-                    removeItem={context.removeItem}
-                  />
-                </React.Suspense>
-              );
-            } else return null;
-          }}
-        </MyContext.Consumer>
-      </React.Fragment>
+      {showCart && (
+        <React.Fragment>
+          <MyContext.Consumer>
+            {context => {
+              const orderedItem = context.state.orderDetails.length;
+              if (orderedItem > 0) {
+                return (
+                  <React.Suspense fallback={null}>
+                    <Cart
+                      totalItem={orderedItem}
+                      classes={classes}
+                      orderDetails={context.state.orderDetails}
+                      MenuDetails={context.state.MenuItems}
+                      addItem={context.addItem}
+                      removeItem={context.removeItem}
+                    />
+                  </React.Suspense>
+                );
+              } else return null;
+            }}
+          </MyContext.Consumer>
+        </React.Fragment>
+      )}
     </Toolbar>
   </AppBar>
 );

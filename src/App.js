@@ -72,6 +72,7 @@ const Footer = React.lazy(() => import("./components/Footer"));
 const Layout = React.lazy(() => import("./layout/Public"));
 const Menu = React.lazy(() => import("./containers/Menu"));
 const CheckOut = React.lazy(() => import("./containers/CheckOut"));
+const Admin = React.lazy(() => import("./components/Admin"));
 
 const App = props => {
   const comp = props.component;
@@ -80,20 +81,28 @@ const App = props => {
     <div className="App">
       <MyProvider>
         <CssBaseline />
-        <Header classes={classes} />
+        {comp === "Admin" && (
+          <React.Suspense fallback={null}>
+            <Header classes={classes} showCart={false} />
+            <Admin classes={classes} />
+          </React.Suspense>
+        )}
         {comp === "Layout" && (
           <React.Suspense fallback={null}>
+            <Header classes={classes} showCart={false} />
             <Layout classes={classes} />
           </React.Suspense>
         )}
         {comp === "Menu" && (
           <React.Suspense fallback={null}>
+            <Header classes={classes} showCart={true} />
             <Menu classes={classes} />
             <Footer classes={classes} />
           </React.Suspense>
         )}
         {comp === "CheckOut" && (
           <React.Suspense fallback={null}>
+            <Header classes={classes} showCart={false} />
             <CheckOut classes={classes} />
           </React.Suspense>
         )}

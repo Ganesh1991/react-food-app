@@ -14,6 +14,17 @@ export class MyProvider extends Component {
     orderDetails: []
   };
 
+  updateProductPrice = (prodId, event) => {
+    const Menuitems = this.state.MenuItems;
+    //prodId
+    Menuitems.forEach(item => {
+      if (item.id === prodId) {
+        item.price = event.target.value;
+      }
+    });
+    this.setState({ Menuitems });
+  };
+
   removeItem = itemId => {
     let orderDetails = this.state.orderDetails;
     console.log("Before update", orderDetails);
@@ -52,7 +63,8 @@ export class MyProvider extends Component {
         value={{
           state: this.state,
           removeItem: this.removeItem,
-          addItem: this.addItem
+          addItem: this.addItem,
+          updateProductPrice: this.updateProductPrice
         }}
       >
         {this.props.children}

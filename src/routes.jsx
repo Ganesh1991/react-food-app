@@ -6,7 +6,12 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/checkout" render={() => <App component="CheckOut" />} />
+        <Route exact path="/admin" render={() => <App component="Admin" />} />
+        <Route
+          exact
+          path="/checkout"
+          render={() => <App component="CheckOut" />}
+        />
         <Route exact path="/menu" render={() => <App component="Menu" />} />
         <Route exact path="/home" render={() => <App component="Layout" />} />
         <Route exact path="/" render={() => <App component="Layout" />} />
